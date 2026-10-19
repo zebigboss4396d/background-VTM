@@ -1,0 +1,119 @@
+/* One screen per subject. The illustration frames an opaque writing surface. */
+[hidden]{display:none!important}
+main{padding-top:28px;min-height:calc(100vh - 76px)}
+.sidebar{padding-top:28px}
+.folio{font-size:46px;margin-bottom:23px}
+.folio span{margin-top:4px}
+#chapter-nav{display:block}
+#chapter-nav .home-nav{margin-bottom:15px;padding-bottom:15px}
+#chapter-nav a{padding:11px 10px;gap:10px;border-bottom:0;border-left:2px solid transparent;line-height:1.45}
+#chapter-nav a.active{border-left-color:#d8bd8c;background:rgba(216,189,140,.10)}
+.chapter-links{display:grid;gap:2px}
+.appendix-nav{border-top:1px solid rgba(201,172,120,.25);margin-top:19px;padding-top:17px}
+.appendix-label{display:block;font-size:8px;letter-spacing:1.4px;color:#b39b79;margin:0 10px 7px}
+.appendix-name{display:flex;flex-direction:column;gap:3px;font-size:12px!important;color:inherit!important}
+.appendix-name small{font-size:10px;font-weight:400;color:#bdb8ac}
+.sidebar .progress-area{margin-top:23px}
+.chapter,.illustration-prompt-panel{background:#f4efe5;border:1px solid #d3c8b6;box-shadow:0 12px 40px #0002;padding:35px 32px 0}
+.chapter-head{padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.fields{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.field.full{grid-column:1/-1}
+.field textarea{min-height:100px}
+.repeat-card{background:transparent;border:0;border-top:1px solid var(--line);padding:26px 0 0;margin-top:26px}
+.repeat-card:first-child{border-top:0;margin-top:0}
+.repeat-card .card-top{margin-bottom:15px}
+.pair-part{padding:24px 0}
+.pair-part:first-of-type{padding-top:18px}
+.pair-part-heading h4{font-size:21px}
+.pair-part>.hint{margin-bottom:15px}
+.rulebox{margin:0 0 22px;background:#eae3d6;padding:14px 18px;border-left-width:2px}
+.rulebox p{margin:6px 0 0}
+.step-navigation{display:flex;align-items:center;gap:14px;border-top:1px solid var(--line);margin-top:34px;padding:24px 0}
+.step-navigation a{text-decoration:none}
+.step-navigation .button{margin-left:auto}
+.step-count{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.step-navigation .subtle{margin-left:auto}
+.chapter>.closing{box-shadow:none;border:0;border-top:1px solid var(--line);background:transparent;margin:32px 0 0;padding:28px 0 0}
+.closing h2{font-size:25px}
+.closing .eyebrow{margin-bottom:9px}
+.closing .actions{gap:10px}
+.closing .small{margin-top:18px}
+.illustration-prompt-panel{padding-bottom:0}
+.illustration-prompt-panel .step-navigation{margin-top:30px}
+.welcome-screen{margin-bottom:26px}
+.welcome-screen .hero{min-height:0;padding:30px 32px 28px;margin-bottom:0}
+.welcome-screen .hero-copy{max-width:640px}
+.welcome-screen .hero h1{font-size:clamp(44px,4.6vw,66px);margin:10px 0 18px}
+.welcome-screen .hero .eyebrow{margin-bottom:10px}
+.welcome-screen .hero .lead{font-size:18px;max-width:580px;margin-bottom:14px}
+.welcome-screen .hero .hero-note{max-width:570px;margin:0}
+.welcome-guide,.welcome-start{background:#f4efe5;padding:26px 30px;border:1px solid var(--line)}
+.welcome-guide{border-bottom:0}
+.welcome-guide .eyebrow,.welcome-start .eyebrow{margin-bottom:8px}
+.welcome-guide h2,.welcome-start h2{font:normal 26px/1.25 var(--serif);margin:0 0 17px}
+.welcome-guide ol{list-style:none;counter-reset:welcome;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:23px;margin:22px 0 0;padding:0}
+.welcome-guide li{counter-increment:welcome;display:flex;flex-direction:column;font-size:12px;gap:8px}
+.welcome-guide li::before{content:'0' counter(welcome);font:22px var(--serif);color:var(--gold)}
+.welcome-guide li span{color:var(--muted)}
+.welcome-screen .context{margin:0;border-bottom:0;background:#f4efe5}
+.welcome-screen .context-categories{gap:9px}
+.welcome-screen .context-category{min-height:85px}
+.welcome-start{border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.welcome-start h2{margin-bottom:10px}
+.welcome-start p:not(.eyebrow){font-size:12px;color:var(--muted);max-width:600px;margin:0}
+.welcome-start .button{align-self:flex-end;min-width:255px;padding:16px 25px}
+@media(max-width:1050px){.sidebar{padding-left:16px;padding-right:14px}#chapter-nav a{padding-left:8px;padding-right:5px}.chapter,.illustration-prompt-panel{padding-left:24px;padding-right:24px}.welcome-guide ol{gap:17px}.closing .actions>*{flex:1 1 190px}}
+@media(max-width:800px){
+ main{padding-top:22px;min-height:60vh}
+ .sidebar{padding:16px 6% 12px}
+ #chapter-nav{display:flex;gap:15px;overflow-x:auto;padding-bottom:10px;align-items:center}
+ #chapter-nav .home-nav{margin:0;padding:8px 7px;flex-shrink:0}
+ .chapter-links{display:flex;gap:10px;flex-shrink:0}
+ #chapter-nav a{padding:8px 7px;white-space:nowrap}
+ .appendix-nav{border-top:0;border-left:1px solid rgba(201,172,120,.3);margin:0;padding:0 0 0 12px;flex-shrink:0}
+ .appendix-label{display:none}
+ .appendix-name{flex-direction:row;gap:8px;align-items:center}
+ .sidebar .progress-area{margin-top:5px}
+ .welcome-screen .hero{padding:28px 26px}
+ .welcome-guide,.welcome-start{padding:25px 24px}
+}
+@media(max-width:550px){
+ main{padding-top:18px}
+ .fields{grid-template-columns:1fr;gap:20px}
+ .chapter,.illustration-prompt-panel{padding:26px 18px 0}
+ .chapter-head{padding-bottom:20px}
+ .repeat-card{padding:22px 0 0}
+ .repeat-card .fields{grid-template-columns:1fr}
+ .welcome-guide ol{grid-template-columns:1fr;gap:17px;margin-top:18px}
+ .welcome-guide li{position:relative;padding-left:37px;gap:4px}
+ .welcome-guide li::before{position:absolute;top:0;left:0}
+ .welcome-screen .hero{padding:27px 20px}
+ .welcome-screen .hero h1{font-size:46px}
+ .welcome-guide,.welcome-start{padding:23px 18px}
+ .welcome-start .button{align-self:stretch;min-width:0}
+ .step-navigation{gap:9px;flex-wrap:wrap;padding:21px 0}
+ .step-navigation .outline,.step-navigation .button{padding:11px 13px;min-width:0}
+ .step-count{margin-left:auto}
+ .step-navigation .button{margin-left:0}
+ .step-navigation .subtle{margin-left:0}
+}
+@media print{main{padding-top:0}}
+
+/* Paint emerges from the paper on the free right margin and dissolves
+   irregularly before the writing area. The picture occupies no layout row. */
+.chapter{position:relative;isolation:isolate;overflow:hidden}
+.chapter>.chapter-art{position:absolute;z-index:-1;pointer-events:none;top:0;right:0;width:70%;height:min(100%,850px);background-image:var(--chapter-image);background-size:cover;background-position:65% center;opacity:.83;mix-blend-mode:multiply;-webkit-mask-image:url("assets/paper-reveal.svg");mask-image:url("assets/paper-reveal.svg");-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.chapter-head{grid-template-columns:40px minmax(0,1fr) auto;gap:14px}
+#identite .chapter-art{background-position:45% center}
+#vecu .chapter-art{background-position:54% center}
+#portrait .chapter-art{background-position:54% center}
+@media(min-width:1101px){
+ .chapter{padding-right:160px}
+ .chapter>.step-navigation,.chapter>.closing{margin-right:-128px}
+ .chapter>.step-navigation{background:linear-gradient(90deg,#f4efe5 65%,#f4efe5e8)}
+ .chapter>.closing{background:linear-gradient(90deg,#f4efe5 65%,#f4efe5e8)}
+}
+@media(min-width:801px) and (max-width:1100px){.chapter>.chapter-art{opacity:.26;width:64%;background-position:right center}}
+@media(max-width:800px){.chapter>.chapter-art{opacity:.25;width:72%;height:min(100%,700px)}}
+@media(max-width:550px){.chapter-head{grid-template-columns:28px minmax(0,1fr) 27px;gap:9px}.chapter>.chapter-art{opacity:.19;width:90%;background-position:60% center}}
+@media print{.chapter>.chapter-art{display:none!important}.chapter{padding-right:0}}
