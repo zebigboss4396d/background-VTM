@@ -2,7 +2,7 @@
 // Print composition: readable response text and flowing A4 pages without a page limit.
 async function createDossierPDF(model,assets){
  const {PDFDocument,rgb,rectangle,clip,endPath,pushGraphicsState,popGraphicsState}=PDFLib;
- const doc=await PDFDocument.create();doc.setTitle('Dossier personnel - '+model.name);doc.setAuthor('Archives personnelles - Chicago 1940');doc.setLanguage('fr-FR');
+ const doc=await PDFDocument.create();doc.setTitle('Dossier personnel - '+model.name);doc.setAuthor('Archives personnelles - Chicago, octobre 1940');doc.setLanguage('fr-FR');
  async function embed(asset){
   const m=asset.metrics,glyphs=new Map(m.characters.map(([cp,id,advanceWidth])=>[cp,{id,advanceWidth,codePoints:[cp]}]));
   const font={...m,characterSet:m.characters.map(c=>c[0]),post:{isFixedPitch:m.postscriptName.includes('Mono')},head:{macStyle:{italic:false}},'OS/2':{sFamilyClass:0},glyphForCodePoint:cp=>glyphs.get(cp)||{id:0,advanceWidth:600,codePoints:[cp]},layout:t=>({glyphs:Array.from(t,c=>font.glyphForCodePoint(c.codePointAt(0)))})};
@@ -16,15 +16,13 @@ async function createDossierPDF(model,assets){
  const titles=['Identité','Origines et vie quotidienne','Expériences et loisirs','Convictions et Attaches','Ce qui vous pousse à agir','Votre place dans la ville','Votre entourage','Portrait et possessions'];
  const identity=model.identity||model.subtitle||'';
  const shortLabels={
-  'Idée de concept du personnage':'En quelques mots','Lieu d’origine et milieu familial':'Origines et famille','Études, apprentissage et arrivée en ville':'Parcours','Votre activité principale':'Secteur','Métier ou activité, précisément':'Métier','Ce que cette activité vous a appris':'Savoir-faire','Une journée ordinaire':'Quotidien','Communautés, religion et idées politiques':'Appartenances',
+  'Idée de concept du personnage':'En quelques mots','Lieu d’origine et milieu familial':'Origines et famille','Études, apprentissage et arrivée en ville':'Parcours','Votre activité principale':'Secteur','Métier ou activité, précisément':'Métier','Ce que cette activité vous a appris':'Savoir-faire','Une journée ordinaire ou un week-end':'Quotidien ou week-end','Métier ou activité complémentaire':'Activité complémentaire','Communautés, religion et idées politiques':'Appartenances',
   'Premier événement marquant':'Premier événement','Deuxième événement marquant':'Deuxième événement','Ce que vous en avez appris':'Apprentissage','Premier loisir':'Loisir 1','Deuxième loisir':'Loisir 2','Troisième loisir':'Loisir 3','Autre fait important de votre passé':'Autre fait marquant',
-  'Origine de cette Conviction':'Origine','Ce qu’elle représente':'Ce que cette personne représente','Votre attitude':'Vos sentiments','Son attitude':'Ses sentiments','Où la trouver':'Lieu habituel',
+  'Origine de cette Conviction':'Origine','Lien entre l’Attache et la Conviction':'Ce qui les relie','Description physique de l’Attache':'Description physique','Nature de votre relation':'Nature du lien','Fonction ou occupation':'Fonction','Âge de l’Attache':'Âge',
   'Ambition — le grand objectif':'Ambition','Désir — ce que vous voulez obtenir bientôt':'Désir','Ce que vous craignez de perdre':'Peur','Votre contradiction intime':'Contradiction',
-  'Votre train de vie':'Train de vie','Origine des revenus et des biens':'Revenus','Où vivez-vous ?':'Logement','Où votre parole a-t-elle du poids ?':'Influence','Qui vous connaît et pourquoi ?':'Réputation','Dettes, ennemis ou obstacles durables':'Difficultés','Ce que vous préférez garder secret':'Secret','Talents particuliers, langues ou fragilités':'Particularités',
-  'Origine du lien':'Rencontre','Vous envers cette personne':'Votre attitude','Cette personne envers vous':'Son attitude','Aide ou attentes':'Aide et attentes','Silhouette, visage et allure':'Allure','Vêtements et présentation':'Tenue','Voix, gestes et habitudes':'Voix et habitudes','Objets utiles et possessions habituelles':'Possessions','Un objet auquel vous tenez':'Objet précieux','Autres éléments à discuter avec le conteur':'À discuter'
+  'Votre train de vie':'Train de vie','Origine des revenus et des biens':'Revenus','Où vivez-vous ?':'Logement','Votre réputation':'Réputation','Dettes, ennemis ou obstacles durables':'Difficultés','Ce que vous préférez garder secret':'Secret','Talents particuliers, langues ou fragilités':'Particularités',
+  'Description physique et attitude':'Physique et attitude','Situations et aide concrète':'Aide concrète','Silhouette, visage et allure':'Allure','Vêtements et présentation':'Tenue','Voix, gestes et habitudes':'Voix et habitudes','Objets utiles et possessions habituelles':'Possessions','Un objet auquel vous tenez':'Objet précieux','Autres éléments à discuter avec le conteur':'À discuter'
  };
- shortLabels['Description de l’Attache']='Portrait de cette personne';
- shortLabels['Ce que cette personne représente']='Ce qu’elle représente';
  function wrap(value,font,size,maxWidth){
   const out=[];
   for(const para of clean(value).split('\n')){
@@ -41,7 +39,7 @@ async function createDossierPDF(model,assets){
  const nameLines=wrap(model.name,bold,titleSize,width-130);
  let headerName=clean(model.name);
  if(nameLines.length>1){headerName=nameLines[0];while(headerName&&bold.widthOfTextAtSize(headerName+'…',titleSize)>width-130)headerName=headerName.slice(0,-1);headerName+='…';}
- const skip=new Set(['Nom et prénom','Surnom ou nom d’usage','Âge en 1940','Genre']);
+ const skip=new Set(['Nom et prénom','Surnom ou nom d’usage','Âge ou date de naissance','Genre']);
  const groups=model.groups.map(g=>({...g,title:titles[g.number-1]||g.title,entries:g.entries.filter(([label,value])=>String(value??'').trim()&&!(g.number===1&&skip.has(label)))})).filter(g=>g.entries.length);
  if(nameLines.length>1){const g=groups.find(g=>g.number===1);if(g)g.entries.unshift(['Nom et prénom',model.name]);else groups.unshift({number:1,title:titles[0],entries:[['Nom et prénom',model.name]]});}
  if(wrap(identity,body,10.7,width).length>1){const g=groups.find(g=>g.number===1);if(g)g.entries.unshift(['Identité',identity]);else groups.unshift({number:1,title:titles[0],entries:[['Identité',identity]]});}
@@ -54,7 +52,7 @@ async function createDossierPDF(model,assets){
   }else units.push(g);
  }
  if(!units.length)units.push({number:1,title:titles[0],entries:[['Votre histoire','Aucune réponse renseignée. Complétez votre dossier puis générez à nouveau le PDF.']]});
- const fullLabels=new Set(['Idée de concept du personnage','Concept','Conviction 1','Conviction 2','Conviction 3','Votre Conviction','Pourquoi cette personne incarne cette Conviction','Ce qu’elle représente','Ce que cette personne représente','Logement','Où vivez-vous ?']);
+ const fullLabels=new Set(['Idée de concept du personnage','Concept','Conviction 1','Conviction 2','Conviction 3','Votre Conviction','Pourquoi cette personne incarne cette Conviction','Ce qu’elle représente','Ce que cette personne représente','Lien entre l’Attache et la Conviction','Description physique de l’Attache','Description physique et attitude','Situations et aide concrète','Logement','Où vivez-vous ?']);
  function layoutUnit(unit,size,gap){
   const leading=size*1.33,headingHeight=size<11.5?28:32,padding=size<11.5?6:10,rows=[];let at=0;
   const isFull=entry=>fullLabels.has(entry[0])||String(entry[1]).length>190;
@@ -109,13 +107,13 @@ async function createDossierPDF(model,assets){
  for(let pageIndex=0;pageIndex<layout.pages.length;pageIndex++){
   const page=doc.addPage([W,H]);
   const draw=(text,x,y,font=body,size=layout.size,color=ink)=>page.drawText(clean(text),{x,y,font,size,color});
-  draw('ARCHIVES DE CHICAGO / 1940',M,H-28,mono,9,muted);
+  draw('ARCHIVES DE CHICAGO / OCTOBRE 1940',M,H-28,mono,9,muted);
   page.drawRectangle({x:W-M-111,y:H-99,width:111,height:68,color:pale});
   page.pushOperators(pushGraphicsState(),rectangle(W-M-111,H-99,111,68),clip(),endPath());
   const scale=Math.max(111/art.width,68/art.height);page.drawImage(art,{x:W-M-111+(111-art.width*scale)/2,y:H-99+(68-art.height*scale)/2,width:art.width*scale,height:art.height*scale});page.pushOperators(popGraphicsState());
   draw('DOSSIER PERSONNEL',M,H-47,bold,10,accent);
   draw(headerName,M,H-73,bold,titleSize);
-  const meta=wrap(identity,body,10.7,width-130);draw(meta.length===1?identity:'Chicago, 1940',M,H-93,body,10.7,muted);
+  const meta=wrap(identity,body,10.7,width-130);draw(meta.length===1?identity:'Chicago, octobre 1940',M,H-93,body,10.7,muted);
   page.drawLine({start:{x:M,y:H-107},end:{x:W-M,y:H-107},color:accent,thickness:1.1});
   let y=top;
   for(const part of layout.pages[pageIndex]){
@@ -157,7 +155,7 @@ function dossierPDFModel(){
  const f=state.fields;
  const hasContent=Object.values(f).some(nonempty)||state.convictions.some(c=>Object.values(c).some(v=>typeof v==='string'&&nonempty(v)))||state.relations.length>0;
  const groups=hasContent?summaryEntries().map((g,i)=>({...g,number:i+1,entries:g.entries.map(([label,value])=>[label,value])})):[];
- return {name:f.nom?.trim()||'Personnage sans nom',subtitle:[f.age?f.age+' ans':null,f.genre,f.surnom?'Surnom : '+f.surnom:null].filter(Boolean).join(' · '),validated:!!state.validatedAt,groups};
+ return {name:f.nom?.trim()||'Personnage sans nom',subtitle:[f.age?ageOrBirthDateSummary(f.age):null,f.genre,f.surnom?'Surnom : '+f.surnom:null].filter(Boolean).join(' · '),validated:!!state.validatedAt,groups};
 }
 async function downloadDossierPDF(){
  const buttons=[...document.querySelectorAll('[data-pdf]')],labels=buttons.map(b=>b.textContent);

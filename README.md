@@ -1,4 +1,4 @@
-# Archives personnelles — Chicago, 1940
+# Archives personnelles — Chicago, octobre 1940
 
 Site de création de background humain, repris de la version existante : accueil, huit rubriques distinctes et appendice facultatif « Donner un visage ». Les illustrations, aides, exemples, sauvegardes JSON et exports PDF et texte sont inclus.
 
@@ -33,7 +33,7 @@ Le format des sauvegardes et les identifiants des champs sont conservés. Les r�
 - Réponses enregistrées localement dans le navigateur ; aucun envoi de dossier à un serveur.
 - Relecture, export JSON, export texte et PDF A4 sans plafond de pages.
 - Portrait facultatif, avec choix de mise en scène et prompt modifiable. Le site prépare un texte à copier ; il ne génère pas lui-même d’image.
-- Le prompt utilise l’identité, le métier et les détails de la rubrique 08, en excluant « Autres éléments à discuter avec le conteur ».
+- Le prompt utilise l’identité, les métiers principal et complémentaire et les détails de la rubrique 08, en excluant « Autres éléments à discuter avec le conteur ».
 - Les notes du conteur existantes restent accessibles via leur bouton ; cet espace n’a pas de protection d’accès.
 
 Les scripts, illustrations et polices nécessaires sont fournis localement. Les liens documentaires externes ne sont consultés qu’à leur ouverture. Le livre de règles, la fiche officielle et les dossiers personnels de joueurs ne sont pas inclus dans cette archive.
@@ -67,4 +67,4 @@ Les mentions et licences des bibliothèques et des polices sont conservées dans
 
 ## Périmètre de cette copie
 
-Cette archive prépare l’hébergement sur GitHub Pages. Les fichiers du site sont repris à l’identique ; seule la configuration d’hébergement et la documentation changent. La version précédemment publiée n’est pas modifiée.
+Cette archive contient la version GitHub Pages du formulaire, fixée à octobre 1940. Elle comprend les contextes enrichis, le bouton « Effacer ce dossier », les relations et Attaches simplifiées, les activités élargies et les espaces de rédaction agrandis. Les anciennes sauvegardes sont importables : les descriptions libres des liens sont reprises dans « Autre » et les anciens champs de réputation sont regroupés. Les champs de ressentis mutuels ont été retirés du formulaire et des exports. La version précédemment publiée sur ChatGPT Sites n’est pas modifiée.

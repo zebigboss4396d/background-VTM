@@ -2,20 +2,20 @@
 // Prompt sources: section 01, precise profession in 02, section 08 excluding storyteller notes, and scene choices.
 const illustrationSceneOptions={
  place:[
-  ['auto','Décor sobre de Chicago','Choisir une rue de Chicago en 1940, avec un arrière-plan discret qui laisse le personnage bien lisible.'],
+  ['auto','Décor sobre de Chicago','Choisir une rue de Chicago en octobre 1940, avec un arrière-plan discret qui laisse le personnage bien lisible.'],
   ['loop','Le Loop, sous le train aérien','Une rue du Loop sous les poutrelles métalliques du train aérien « L », avec des façades et des véhicules de 1940 ; les lignes de la structure donnent de la profondeur.'],
   ['river','Au bord de la Chicago River','Un quai de la Chicago River, près d’un pont métallique basculant ; eau sombre et immeubles de l’entre-deux-guerres en arrière-plan.'],
   ['michigan','Michigan Avenue et son pont','Michigan Avenue près de son pont sur la rivière, avec ses bâtiments des années 1920–1930 ; restituer son aspect en 1940.'],
   ['station','Union Station, le grand hall','Le grand hall de Chicago Union Station, ouvert en 1925 : architecture monumentale, colonnes et vaste verrière, dans son état de 1940.'],
   ['bronzeville','Bronzeville, devant un club de jazz','Une rue de Bronzeville sur le South Side, devant un club de jazz fictif de 1940 : entrée discrète, façades de brique et évocation de la vie musicale du quartier.'],
-  ['office','Un bureau dans le Loop','Un bureau de Chicago en 1940, avec meubles de bois, téléphone fixe, dossiers papier et machine à écrire.'],
-  ['shop','Une boutique de quartier','L’intérieur ou la devanture d’une boutique de quartier à Chicago en 1940, avec comptoir, vitrines et objets usuels d’une boutique de cette époque.'],
-  ['hotel','Le hall d’un hôtel','Le hall d’un hôtel fictif de Chicago en 1940, avec réception, boiseries, fauteuils et éclairages d’époque.'],
-  ['room','Une chambre de pension','Une chambre de pension modeste à Chicago en 1940 : lit simple, mobilier usé, fenêtre et quelques affaires personnelles.'],
+  ['office','Un bureau dans le Loop','Un bureau de Chicago en octobre 1940, avec meubles de bois, téléphone fixe, dossiers papier et machine à écrire.'],
+  ['shop','Une boutique de quartier','L’intérieur ou la devanture d’une boutique de quartier à Chicago en octobre 1940, avec comptoir, vitrines et objets usuels d’une boutique de cette époque.'],
+  ['hotel','Le hall d’un hôtel','Le hall d’un hôtel fictif de Chicago en octobre 1940, avec réception, boiseries, fauteuils et éclairages d’époque.'],
+  ['room','Une chambre de pension','Une chambre de pension modeste à Chicago en octobre 1940 : lit simple, mobilier usé, fenêtre et quelques affaires personnelles.'],
   ['workers','Un quartier ouvrier près des abattoirs','Une rue ouvrière du secteur de New City près des Union Stock Yards, en 1940 : maisons et immeubles de brique, ateliers et ambiance industrielle.'],
-  ['alley','Une ruelle de briques','Une ruelle de service à Chicago en 1940, entre des façades de brique, avec portes arrière et escaliers métalliques cohérents avec l’époque.'],
-  ['lake','Au bord du lac Michigan','Une promenade au bord du lac Michigan à Chicago en 1940 : horizon ouvert, vent sur les vêtements et silhouette urbaine discrète au loin.'],
-  ['custom','Un lieu de mon choix','Utiliser le lieu décrit dans les précisions du joueur, à Chicago en 1940.']
+  ['alley','Une ruelle de briques','Une ruelle de service à Chicago en octobre 1940, entre des façades de brique, avec portes arrière et escaliers métalliques cohérents avec l’époque.'],
+  ['lake','Au bord du lac Michigan','Une promenade au bord du lac Michigan à Chicago en octobre 1940 : horizon ouvert, vent sur les vêtements et silhouette urbaine discrète au loin.'],
+  ['custom','Un lieu de mon choix','Utiliser le lieu décrit dans les précisions du joueur, à Chicago en octobre 1940.']
  ],
  pose:[
   ['auto','Pose naturelle','Choisir une posture simple et naturelle, avec le visage bien visible et une silhouette lisible.'],
@@ -79,7 +79,7 @@ function normalizeIllustrationPrompt(value){
  if(!value||typeof value!=='object'||Array.isArray(value))return emptyIllustrationPrompt();
  return {text:typeof value.text==='string'?value.text.slice(0,200000):'',source:typeof value.source==='string'?value.source.slice(0,32):'',custom:value.custom===true,scene:normalizeIllustrationScene(value.scene)};
 }
-const illustrationSourceFields=['nom','surnom','age','genre','concept','profession','silhouette','tenue','singularite','equipement','objetCher'];
+const illustrationSourceFields=['nom','surnom','age','genre','concept','profession','professionSecondaire','silhouette','tenue','singularite','equipement','objetCher'];
 function illustrationSourceSignature(dossier){
  const fields=Object.fromEntries(illustrationSourceFields.filter(key=>typeof dossier.fields[key]==='string'&&dossier.fields[key].trim()).map(key=>[key,dossier.fields[key].trim()]));
  const source=JSON.stringify([fields,normalizeIllustrationScene(dossier.illustration?.scene)]);
@@ -89,11 +89,11 @@ function buildIllustrationPrompt(dossier){
  const f=dossier.fields;
  const present=value=>typeof value==='string'&&value.trim()&&!['Choisir…','Choisir un repère…','À préciser…'].includes(value.trim());
  const entries=list=>list.filter(([,v])=>present(v)).map(([label,value])=>label+' : '+value.trim()).join('\n');
- const identity=entries([['Nom',f.nom],['Surnom',f.surnom],['Âge en 1940',f.age],['Genre',f.genre],['Idée de concept du personnage',f.concept]]);
- const profession=entries([['Métier ou activité, précisément',f.profession]]);
+ const identity=entries([['Nom',f.nom],['Surnom',f.surnom],['Âge ou date de naissance (octobre 1940)',f.age],['Genre',f.genre],['Idée de concept du personnage',f.concept]]);
+ const profession=entries([['Métier ou activité, précisément',f.profession],['Métier ou activité complémentaire',f.professionSecondaire]]);
  const appearance=entries([['Silhouette, visage et allure',f.silhouette],['Vêtements et présentation',f.tenue],['Voix, gestes et habitudes',f.singularite],['Objets utiles et possessions habituelles',f.equipement],['Un objet auquel vous tenez',f.objetCher]]);
  return [
-  'Génère une illustration originale de ce personnage, à Chicago en 1940.',
+  'Génère une illustration originale de ce personnage, à Chicago en octobre 1940.',
   'DIRECTION GRAPHIQUE\nPeinture numérique semi-réaliste, esthétique gothique urbaine et néo-noire. Technique expressive évoquant l’huile et la gouache traditionnelles : coups de pinceau visibles, textures rugueuses et granuleuses, imperfections, contours souples et irréguliers, détails sélectifs et zones esquissées. Anatomie, visage et architecture réalistes, expressifs et crédibles. Composition cinématographique, profondeur atmosphérique, ombres profondes et éclairages dramatiques. Palette désaturée : gris anthracite, brun sépia, bleu pétrole, vert olive et beige poussiéreux ; rares accents rouge sombre ou ambre. Ambiance adulte, mélancolique, mystérieuse et oppressante, nourrie de roman noir et de réalisme social. Éviter le photoréalisme, le rendu 3D, les contours BD nets, les couleurs saturées, les visages idéalisés et les textures plastiques.',
   'IDENTITÉ DU PERSONNAGE\n'+(identity||'Personnage encore à définir.'),
   profession?'MÉTIER\n'+profession:'',
@@ -143,7 +143,7 @@ function buildIllustrationScene(dossier){
  const scene=normalizeIllustrationScene(dossier.illustration?.scene);
  const labels={place:'Lieu',pose:'Pose',attitude:'Attitude',framing:'Cadrage',light:'Lumière',weather:'Atmosphère'};
  const selected=Object.entries(illustrationSceneOptions).map(([key,items])=>labels[key]+' : '+items.find(([id])=>id===scene[key])[2]);
- return 'MISE EN SCÈNE\n'+selected.join('\n')+(scene.extra.trim()?'\nPrécisions du joueur : '+scene.extra.trim():'')+'\nReprésenter une seule personne, sujet principal de l’image. Adapter la pose aux parties du corps visibles dans le cadrage choisi. Les vêtements et accessoires visibles reprennent les réponses du personnage. Les précisions du joueur affinent les options choisies. Conserver des vêtements, des véhicules, une architecture et des objets cohérents avec Chicago en 1940. Le personnage est encore humain au début de cette histoire.';
+ return 'MISE EN SCÈNE\n'+selected.join('\n')+(scene.extra.trim()?'\nPrécisions du joueur : '+scene.extra.trim():'')+'\nReprésenter une seule personne, sujet principal de l’image. Adapter la pose aux parties du corps visibles dans le cadrage choisi. Les vêtements et accessoires visibles reprennent les réponses du personnage. Les précisions du joueur affinent les options choisies. Conserver des vêtements, des véhicules, une architecture et des objets cohérents avec Chicago en octobre 1940. Le personnage est encore humain au début de cette histoire.';
 }
 function renderIllustrationSceneControls(){
  const labels={place:'Lieu à Chicago',pose:'Pose',attitude:'Attitude',framing:'Cadrage',light:'Lumière',weather:'Atmosphère'};

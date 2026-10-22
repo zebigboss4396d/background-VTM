@@ -117,3 +117,7 @@ main{padding-top:28px;min-height:calc(100vh - 76px)}
 @media(max-width:800px){.chapter>.chapter-art{opacity:.25;width:72%;height:min(100%,700px)}}
 @media(max-width:550px){.chapter-head{grid-template-columns:28px minmax(0,1fr) 27px;gap:9px}.chapter>.chapter-art{opacity:.19;width:90%;background-position:60% center}}
 @media print{.chapter>.chapter-art{display:none!important}.chapter{padding-right:0}}
+
+/* Espaces de rédaction pour les revenus et les loisirs. */
+#revenus{min-height:170px}
+#loisir1,#loisir2,#loisir3{min-height:140px}
