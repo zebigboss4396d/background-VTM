@@ -216,6 +216,22 @@ function download(content,name,type){const url=URL.createObjectURL(new Blob([con
 const filename=()=>String(state.fields.nom||'personnage').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'').slice(0,70)||'personnage';
 document.getElementById('export-json').onclick=()=>{download(JSON.stringify(state,null,2),`dossier-${filename()}.json`,'application/json');toast('Sauvegarde téléchargée. Elle inclut les notes du conteur si elles sont remplies.');};
 document.getElementById('export-json-end').onclick=()=>document.getElementById('export-json').click();
+document.getElementById('reset-dossier').onclick=()=>{
+ if(!window.confirm('Effacer ce dossier et sa sauvegarde dans ce navigateur ? Toutes les réponses, les notes et le prompt d’illustration seront effacés. Cette action est irréversible.'))return;
+ try{localStorage.removeItem(STORAGE_KEY);}catch{toast('Impossible d’effacer la sauvegarde dans ce navigateur. Le dossier a été conservé.');return;}
+ state=emptyState();storageAvailable=true;hadInvalidStorage=false;
+ document.getElementById('import-file').value='';
+ document.getElementById('summary').innerHTML='';
+ document.getElementById('validation').innerHTML='';
+ document.getElementById('validation').classList.remove('valid');
+ document.getElementById('review-name').textContent='Votre personnage';
+ document.getElementById('confirm-background').disabled=true;
+ document.getElementById('pdf-feedback').textContent='';
+ document.getElementById('pdf-feedback').hidden=true;
+ renderSections();navigateToScreen('identite');
+ document.getElementById('save-status').textContent='Dossier vierge';
+ toast('Dossier effacé. Vous pouvez commencer un nouveau personnage.');
+};
 function narrativeText(){const f=state.fields;let out=`DOSSIER PERSONNEL — 1940\n${f.nom||'Personnage sans nom'}\n\n`;if(nonempty(f.concept))out+=`${f.concept.trim()}\n\n`;for(const g of summaryEntries()){const entries=g.entries.filter(([,v])=>nonempty(v));if(!entries.length)continue;out+=`${g.title.toUpperCase()}\n\n`;out+=entries.map(([label,value])=>`${label}\n${value.trim()}\n`).join('\n')+'\n';}return out;}
 document.getElementById('export-text').onclick=()=>download(narrativeText(),`histoire-${filename()}.txt`,'text/plain;charset=utf-8');
 document.getElementById('import-json').onclick=()=>document.getElementById('import-file').click();
