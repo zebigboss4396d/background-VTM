@@ -1,100 +1,74 @@
 # Archives personnelles — Chicago, octobre 1940
 
-Site de création de background humain, repris de la version existante : accueil, huit rubriques distinctes et deux compléments : « Donner un visage » et « Dossier illustré ». Les illustrations, aides, exemples, sauvegardes JSON, exports texte et prompts sont inclus.
+Création de background humain : accueil documenté, huit rubriques, portrait facultatif, puis dossier illustré. Le questionnaire et le générateur de prompt du portrait sont conservés.
 
-## Mettre le site sur GitHub Pages
+## Installer sur GitHub Pages
 
-1. Décompressez l’archive sur votre ordinateur.
-2. Créez votre nouveau dépôt GitHub (un dépôt public convient à GitHub Free).
-3. Ajoutez **le contenu de l’archive à la racine du dépôt**. Le fichier `index.html` doit être directement à la racine, aux côtés de `app.js`, `dossier-prompt.js` et `assets/`. Ne téléversez pas le ZIP lui-même, ni un dossier parent contenant tous les fichiers.
-4. Validez les fichiers sur la branche `main`.
-5. Dans **Settings → Pages → Build and deployment**, choisissez **Deploy from a branch**, puis **main** et **/(root)**. Cliquez sur **Save**.
-6. Attendez la fin de la publication. GitHub affiche ensuite l’adresse du site dans Settings → Pages, généralement `https://VOTRE-COMPTE.github.io/NOM-DU-DEPOT/`.
+1. Décompressez l’archive et ajoutez **son contenu à la racine** de votre dépôt GitHub. `index.html` doit être directement à la racine, à côté de `app.js` et `assets/`.
+2. Conservez `.nojekyll` et `_config.yml`.
+3. Dans **Settings → Pages**, choisissez **Deploy from a branch**, branche `main`, dossier `/(root)` et **Save**.
+4. GitHub affiche l’adresse publiée dans Settings → Pages. Les mises à jour se font en remplaçant les fichiers du dépôt.
 
-Le fichier caché `.nojekyll` est inclus : conservez-le lors de l’import. Il permet de publier directement les fichiers statiques.
+Le site est statique : aucune compilation, clé API ou configuration de serveur n’est nécessaire. Les chemins relatifs fonctionnent aussi dans un dépôt portant un autre nom. Cette archive ne modifie pas l’ancien site ChatGPT Sites.
 
-Aucune compilation, installation npm, clé API ni configuration de serveur n’est nécessaire. Les chemins sont relatifs : le dépôt peut porter le nom de votre choix. Les publications suivantes se font en mettant à jour les fichiers sur `main`.
+## Le dossier : deux résultats distincts
 
-Documentation GitHub : [configurer la source de publication](https://docs.github.com/fr/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) et [créer un site Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site).
+- **Une planche illustrée synthétique**, partageable entre joueurs : personnage principal dominant, illustrations secondaires justifiées par les réponses, textes courts, esthétique peinte de roman noir et Art déco.
+- **Un texte détaillé réservé au MJ**, avec l’ensemble des faits renseignés, les nuances, les secrets et les difficultés. Ce texte est séparé de l’image et se télécharge à part.
 
-## Récupérer un personnage du site précédent
+Le site prépare un **prompt** à partir des huit rubriques. La synthèse rédactionnelle et la génération graphique se font dans ChatGPT, conformément au fonctionnement choisi ; le site ne fait pas d’appel à une API et ne vérifie pas automatiquement les textes dessinés dans une image.
 
-L’enregistrement automatique appartient au navigateur et à l’adresse du site. Il ne se transfère pas tout seul de l’ancienne adresse vers GitHub Pages.
+### Obtenir les deux résultats
 
-1. Sur l’ancien site, cliquez sur **Sauvegarder le dossier** pour télécharger le JSON.
-2. Sur le nouveau site, cliquez sur **Reprendre une sauvegarde** et sélectionnez ce fichier.
+1. Remplissez les rubriques et ouvrez **Générer le dossier illustré**.
+2. Téléchargez la référence de Kiki depuis cette page. Elle guide le style et la composition ; ses faits et son visage ne doivent pas être copiés sur un autre personnage.
+3. Si vous le souhaitez, utilisez **Donner un visage**, créez votre portrait dans ChatGPT, puis importez-le dans le dossier.
+4. Copiez le prompt du dossier dans ChatGPT. **Joignez aussi la référence de Kiki et le portrait éventuel** : le texte copié ne transmet pas les images.
+5. Le prompt demande d’abord une synthèse structurée sans doublons, puis le texte complet destiné au MJ et une seule image verticale. Il distingue les faits partageables des faits confidentiels et exclut les indices visuels révélant un secret.
+6. Importez la planche obtenue dans le site (JPG, PNG ou WebP, 30 Mo maximum). Elle est affichable en grand et téléchargeable dans son format original, sans compression.
+7. Collez le texte rédigé dans **Le dossier pour le MJ**. À défaut, cette zone rassemble déjà les réponses complètes. Elle est modifiable et téléchargeable en `.txt`.
 
-Le format des sauvegardes et les identifiants des champs sont conservés. Les réponses, relations, Convictions, Attaches et choix du portrait peuvent ainsi être repris. Gardez le fichier JSON pour transmettre un dossier au conteur ou changer d’appareil. Un PDF sert à la lecture ; il ne remplace pas la sauvegarde JSON pour reprendre la saisie.
+Relisez la planche avant de la partager : aucune consigne de génération ne garantit à elle seule la confidentialité ou l’exactitude du résultat. Le prompt complet, le texte pour le MJ et la sauvegarde JSON contiennent les informations privées ; ne les transmettez pas aux autres joueurs. La zone MJ repliée sert à la présentation et n’est pas une protection d’accès.
 
-## Fonctionnement
+## Sauvegardes et images
 
-- Accueil et repères historiques par thème.
-- Huit écrans, Précédent/Suivant et navigation libre à gauche.
-- Réponses enregistrées localement dans le navigateur ; aucun envoi de dossier à un serveur.
-- Relecture, export JSON et export des réponses en texte.
-- Dossier illustré : prompt complet au ton de roman noir, une synthèse d’une page puis un dossier développé sans plafond de pages. Les six titres directs sont fixés dans le prompt.
-- Import d’un portrait JPG, PNG ou WebP (10 Mo maximum), aperçu, retrait et téléchargement. Le portrait préparé est inclus dans la sauvegarde JSON.
-- Prompt du dossier modifiable, actualisable et téléchargeable. Les modifications manuelles sont conservées ; un message signale les changements de réponses ou de portrait.
-- Portrait facultatif, avec choix de mise en scène et prompt modifiable. Le site prépare un texte à copier ; il ne génère pas lui-même d’image.
-- Le prompt utilise l’identité, les métiers principal et complémentaire et l’apparence et les possessions, en excluant « Autres éléments à discuter avec le conteur ».
-- Les notes du conteur existantes restent accessibles via leur bouton ; cet espace n’a pas de protection d’accès.
+Les réponses, les deux prompts, le texte personnalisé pour le MJ et le portrait préparé sont conservés dans le navigateur et exportables dans le JSON. Une modification ultérieure des réponses signale les textes personnalisés à revoir ; elle ne les écrase pas.
 
-Les scripts et illustrations nécessaires sont fournis localement. Les liens documentaires externes ne sont consultés qu’à leur ouverture. Le livre de règles, la fiche officielle et les dossiers personnels de joueurs ne sont pas inclus dans cette archive.
+La planche originale est conservée séparément dans le navigateur avec IndexedDB. **Le JSON ne contient pas ses pixels.** Téléchargez l’image séparément pour l’archiver ou changer d’appareil. Après import d’un JSON sur un autre navigateur, réimportez cette image. Si le stockage d’images est indisponible, elle reste visible pendant la session et un message invite à la télécharger immédiatement.
 
-## Essayer le site en local
+**Effacer ce dossier** efface les réponses, les prompts, le texte pour le MJ, le portrait et la planche associée dans ce navigateur, après confirmation. Les fichiers téléchargés restent sur votre appareil.
 
-Depuis le dossier décompressé, lancez avec Python 3 :
+Pour reprendre un personnage de l’ancien site : exportez son JSON sur l’ancienne adresse, puis utilisez **Reprendre une sauvegarde** sur la nouvelle. L’enregistrement automatique ne se transfère pas entre adresses. Les anciennes réponses restent compatibles. Un ancien prompt de dossier PDF personnalisé est proposé au téléchargement et remplacé par le nouveau prompt de planche ; le portrait reste conservé.
 
-```sh
-python3 -m http.server 8000
-```
+## Parcours
 
-Ouvrez ensuite `http://localhost:8000`. Ce mode correspond au fonctionnement sur GitHub Pages et permet notamment de vérifier la copie des prompts.
-
-## Organisation des fichiers
-
-| Fichier ou dossier | Rôle |
-| --- | --- |
-| `index.html` | Structure de la page et fenêtres d’aide |
-| `app.js` | Formulaire, navigation, sauvegardes et relecture |
-| `context-guides.js` | Repères historiques |
-| `illustration-prompt.js` | Préparation du prompt et options de scène |
-| `dossier-prompt.js`, `dossier-prompt.css` | Prompt du dossier illustré et import du portrait |
-| `style.css`, `wallpaper.css`, `journey.css` | Présentation et illustrations fondues |
-| `assets/` | Images et masque |
-| `.nojekyll`, `_config.yml` | Publication statique sur GitHub Pages |
-| `AGENTS.md` | Consigne conservée pour les futures interventions sur le code |
-
-Les fichiers tiers conservés dans le projet gardent leurs mentions et licences. Ce projet est un outil de campagne non officiel ; aucune licence générale supplémentaire n’est attribuée aux contenus tiers.
-
-## Périmètre de cette copie
-
-Cette archive contient la version GitHub Pages du formulaire, fixée à octobre 1940. Elle comprend les contextes enrichis, le bouton « Effacer ce dossier », les relations et Attaches simplifiées, les activités élargies et les espaces de rédaction agrandis. Les anciennes sauvegardes sont importables : les descriptions libres des liens sont reprises dans « Autre » et les anciens champs de réputation sont regroupés. Les champs de ressentis mutuels ont été retirés du formulaire et des exports. La version précédemment publiée sur ChatGPT Sites n’est pas modifiée.
-
-## Obtenir le dossier illustré
-
-1. Remplissez les huit rubriques et relisez vos réponses.
-2. Si vous voulez un portrait, utilisez **Donner un visage** pour préparer le prompt d’image. Créez le portrait dans votre outil, puis importez-le dans **Dossier illustré**.
-3. Copiez le prompt du dossier et collez-le dans une conversation ChatGPT capable de créer un PDF. **Joignez également le portrait à cette conversation** : le texte copié ne transmet pas l’image. Le bouton de téléchargement du portrait permet de récupérer l’image préparée.
-4. Faites générer le dossier : **Le personnage en bref**, **Origines et parcours**, **Vie quotidienne et loisirs**, **Convictions, Attaches et objectifs**, **Entourage et relations**, **Situation matérielle et vie privée**.
-
-Le site prépare les consignes et les réponses ; la rédaction, les illustrations supplémentaires et le PDF sont produits dans cette conversation extérieure. L’ancien export PDF automatique a été remplacé. Les notes de l’espace conteur sont exclues du prompt ; les secrets du personnage sont destinés à un encadré privé. La sauvegarde JSON conserve les deux prompts personnalisés et le portrait importé. Les anciennes sauvegardes restent importables ; une nouvelle sauvegarde avec portrait ou prompt volumineux est acceptée jusqu’à 12 Mo. Si la sauvegarde locale du navigateur est indisponible ou pleine, le bandeau invite à exporter le JSON.
-
-## Ordre du parcours
-
-1. Votre identité.
-2. Apparence et attitude : silhouette, visage, tenue, voix, gestes et habitudes.
-3. Origines et métier.
+1. Identité : nom, surnom, âge ou naissance, genre et concept.
+2. Apparence et attitude.
+3. Origines et métiers : six milieux possibles, suggestions adaptées, activités légales ou non.
 4. Événements et loisirs.
 5. Convictions et Attaches.
 6. Ambition et Désir.
-7. Moyens et possessions : logement, revenus, réputation, difficultés, objets et notes personnelles.
-8. Relations, puis préparation du dossier illustré.
+7. Moyens et possessions : logement, revenus, réputation, difficultés, objets et notes.
+8. Relations : première fiche ouverte et bouton Ajouter une personne.
 
-Les identifiants des réponses sont conservés : les anciennes sauvegardes retrouvent automatiquement les champs dans leur nouvelle rubrique. La tenue esquissée au début peut être ajustée après le choix du métier et des moyens.
+Les ressentis réciproques et la rubrique avec les autres personnages joueurs restent supprimés. Les sauvegardes ignorent les anciens champs correspondants. Les notes de l’espace conteur restent dans le JSON mais sont exclues des prompts destinés à la création humaine.
 
-La rubrique « Avec les autres personnages joueurs » a été retirée du formulaire, des aides, de la validation et des exports. Les anciens champs correspondants sont ignorés à l’import. Dans « Vos autres relations », une première fiche vide est toujours affichée, puis le bouton « Ajouter une personne » permet d’en ouvrir d’autres. Les fiches entièrement vides sont facultatives et ne sont pas transmises au prompt.
+**Donner un visage** conserve ses menus : 56 lieux, 40 poses, 38 attitudes, 22 cadrages, 7 éclairages, 23 météos et les précisions libres.
 
-Dans la rubrique 03, « Dans quel milieu avez-vous grandi ? » propose six repères : grande précarité, famille ouvrière, artisans ou petits commerçants, classe moyenne, milieu aisé, autre ou milieu difficile à définir. Le choix adapte les suggestions de la boîte « Lieu d’origine et milieu familial » et son exemple de saisie, sans écrire ni remplacer les réponses du joueur. Le repère est facultatif, conservé dans le JSON et repris dans la relecture, l’export texte et le prompt du dossier. Les anciennes origines rédigées restent intactes et aucun milieu ne leur est attribué automatiquement.
+## Fichiers
 
-Les menus de « Donner un visage » sont enrichis et regroupés par thèmes : 56 lieux, 40 poses, 38 attitudes, 22 cadrages et 23 météos, avec un choix libre dans chacun de ces menus. Les sept éclairages existants sont conservés. Les anciens identifiants de choix restent compatibles avec les sauvegardes. Le prompt adapte la météo aux scènes intérieures et la pose au cadrage, tout en gardant une seule personne comme sujet principal.
+| Fichier | Rôle |
+| --- | --- |
+| `index.html` | Structure, navigation et fenêtres |
+| `app.js` | Questionnaire, sauvegardes, import, relecture |
+| `context-guides.js` | Contextes historiques |
+| `illustration-prompt.js` | Prompt du portrait et mise en scène |
+| `dossier-prompt.js` | Prompt de la planche et du texte MJ, portrait, migrations |
+| `dossier-result.js` | Consultation et conservation de la planche, texte pour le MJ |
+| `dossier-prompt.css` | Présentation de la page du dossier |
+| `style.css`, `wallpaper.css`, `journey.css` | Présentation générale conservée |
+| `assets/` | Images du site et référence de Kiki fournie |
+| `.nojekyll`, `_config.yml` | Publication statique |
+| `AGENTS.md` | Préférence de formulaire conservée |
+
+Le livre de règles, la fiche officielle et les réponses personnelles des joueurs ne sont pas inclus. La référence fictive de Kiki est fournie dans les assets pour pouvoir la joindre à la génération. Les mentions des contenus tiers sont conservées ; aucune licence générale supplémentaire ne leur est attribuée.
