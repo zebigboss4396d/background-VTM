@@ -29,7 +29,9 @@ Le site copie des consignes ; l’image et le PDF sont créés dans la conversat
 3. Collez le prompt dans ChatGPT. Joignez votre portrait éventuel. Le prompt de la planche décrit intégralement sa composition et son style : aucune référence graphique n’est nécessaire. Le portrait personnel reste facultatif.
 4. L’IA synthétise les réponses puis génère l’image, ou rédige et met en page le PDF selon le bouton choisi.
 
-Le prompt décrit une composition verticale autonome : grand portrait dominant, bandeau de titre ancien, papier ivoire, peintures secondaires de lieux, proches et objets issus des réponses, typographie de presse et ornements Art déco discrets. Aucun personnage d’exemple ni fichier de référence n’est nécessaire.
+Le prompt décrit une composition verticale autonome : portrait limité à la partie supérieure, bandeau de titre ancien, papier ivoire, frise, portraits de proches, scènes de quotidien et études d’objets. Il demande à l’IA de préparer un manuscrit synthétique avant l’appel à son outil d’images, puis de générer ensemble textes et illustrations. Les blocs de prose plaqués sur une image existante et les montages en code sont explicitement écartés. Aucun personnage d’exemple ni fichier de référence n’est nécessaire.
+
+La correction de composition a été essayée sans référence graphique, sur les informations du personnage de test présentes dans les images fournies. Deux générations ont été examinées ; la seconde utilisait le manuscrit préparé avant l’appel au générateur d’images. Ce test ne fait pas intervenir le bouton PDF et ne fournit pas de moteur d’IA interne au site.
 
 ### Confidentialité
 
