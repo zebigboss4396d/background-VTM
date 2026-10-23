@@ -1,5 +1,5 @@
 'use strict';
-// Prompt sources: section 01, precise profession in 02, section 08 excluding storyteller notes, and scene choices.
+// Prompt sources: identity, professions, appearance, possessions and scene choices; exclude storyteller notes.
 const illustrationSceneOptions={
  place:[
   ['auto','Décor sobre de Chicago','Choisir une rue de Chicago en octobre 1940, avec un arrière-plan discret qui laisse le personnage bien lisible.'],
@@ -109,7 +109,7 @@ function syncIllustrationPrompt(){
  if(!prompt.custom){prompt.text=buildIllustrationPrompt(state);prompt.source=signature;}
  if(field.value!==prompt.text)field.value=prompt.text;
  const status=document.getElementById('illustration-prompt-status');
- status.textContent=prompt.custom?(prompt.source!==signature?'Votre identité, votre métier, vos détails de portrait ou votre mise en scène ont changé. Actualisez le prompt pour les reprendre ; votre texte personnalisé est conservé.':'Prompt personnalisé · vos modifications sont conservées.'): 'Sources : rubrique 01, métier de la rubrique 02 et rubrique 08 hors éléments à discuter avec le conteur, avec votre mise en scène · modifiable librement.';
+ status.textContent=prompt.custom?(prompt.source!==signature?'Votre identité, votre métier, vos détails de portrait ou votre mise en scène ont changé. Actualisez le prompt pour les reprendre ; votre texte personnalisé est conservé.':'Prompt personnalisé · vos modifications sont conservées.'): 'Sources : identité, apparence, métiers et possessions, avec votre mise en scène · notes au conteur exclues · modifiable librement.';
  document.getElementById('copy-illustration-prompt').disabled=!prompt.text.trim();
 }
 function rebuildIllustrationPrompt(){

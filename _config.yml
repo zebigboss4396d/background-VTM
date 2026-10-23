@@ -1,3 +1,1 @@
-# Conserve PDF-lib si le fichier caché .nojekyll est omis lors d’un import Web.
-include:
-  - vendor
+# Publication statique ; conserver également le fichier .nojekyll.

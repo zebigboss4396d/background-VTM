@@ -6,12 +6,16 @@ const sections=[
  F('nom','Nom et prénom','Ex. : Evelyn Ward'),F('surnom','Surnom ou nom d’usage','S’il en possède un',{optional:true}),
  F('age','Âge ou date de naissance','Ex. : 32 ans ou 12/05/1908',{hint:'Âge en octobre 1940, ou date de naissance au format jour/mois/année.'}),F('genre','Genre','',{type:'select',options:['Choisir…','Masculin','Féminin'],strictOptions:true,optional:true}),
  F('concept','Idée de concept du personnage','Ex. : infirmière obstinée, boxeur endetté, journaliste trop curieux…',{area:true,full:true,hint:'Présentez sa personnalité et ce qui risque de l’entraîner dans l’histoire. Cette idée pourra évoluer.',example:'Infirmière obstinée · boxeur endetté · secrétaire débrouillarde · escroc élégant · ouvrier syndicaliste · héritière en rupture.'})]},
+ {id:'portrait',title:'Votre apparence',nav:'Apparence & attitude',intro:'Donnez un visage à votre personnage : silhouette, traits, tenue, voix et attitude. Quelques détails suffisent pour commencer ; vous pourrez les ajuster lorsque sa vie et ses moyens se préciseront.',help:'portrait',fields:[
+ F('silhouette','Silhouette, visage et allure','Taille, carrure, traits du visage, regard, cheveux…',{area:true}),
+ F('tenue','Vêtements et présentation','Ce que vos habits disent de votre métier, de vos moyens ou de vos goûts…',{area:true}),
+ F('singularite','Voix, gestes et habitudes','Ex. : parle à voix basse, retourne sa bague avant de mentir…',{area:true,optional:true})]},
  {id:'quotidien',title:'La vie que vous menez',nav:'Origines & métier',intro:'Où avez-vous grandi ? De quoi vivez-vous ? Quelques recherches sur Chicago en octobre 1940 vous aideront à situer votre histoire. Donnez des noms aux personnes qui comptent, aux établissements et aux lieux que vous fréquentez ; vous pouvez inventer des personnes et de petites adresses cohérentes avec l’époque.',help:'vie',fields:[
  F('origines','Lieu d’origine et milieu familial','Quartier ou pays, famille, langue, situation sociale…',{area:true}),
  F('parcours','Études, apprentissage et arrivée en ville','École quittée tôt, diplôme, formation sur le tas, migration…',{area:true}),
  F('professionType','Votre activité principale','',{type:'select',options:['Choisir un repère…','Industrie / usine / abattoirs','Artisanat / mécanique / réparation','Bâtiment / entretien','Chemin de fer / transport / livraison','Commerce / boutique / vente ambulante','Affaires / banque / assurance / comptabilité','Hôtellerie / pension / restauration / bar','Travail domestique / conciergerie / services','Médecine / soins / pharmacie','Aide sociale / association / syndicat','Presse / photographie / édition','Enquête privée / détective','Droit / justice','Musique / théâtre / cinéma / spectacle','Arts / écriture / création','Sport / boxe / entraînement','Police / pompiers / sécurité','Armée / marine','Administration / politique','Enseignement / études / recherche','Religion / fonction religieuse','Agriculture / horticulture / travail saisonnier','Foyer / aide familiale','Rentes / héritage / placements','Paris clandestins / bookmaker','Contrebande / recel / marché clandestin','Escroquerie / faussaire / petites combines','Vol / cambriolage / pickpocket','Prostitution / activité de nuit clandestine','Activité illégale à préciser','Sans emploi / situation précaire','Autre activité']}),
  F('profession','Métier ou activité, précisément','Ex. : mécanicien au dépôt ferroviaire',{hint:'Votre activité peut être officielle ou officieuse, légale ou illégale. Précisez l’établissement ou le lieu si vous le connaissez.'}),
- F('professionSecondaire','Métier ou activité complémentaire','Ex. : musicien le samedi soir, paris clandestins, petits travaux…',{area:true,optional:true,hint:'Vous pouvez cumuler plusieurs activités, officielles ou non, légales ou non. Décrivez vos revenus dans la rubrique 06.'}),
+ F('professionSecondaire','Métier ou activité complémentaire','Ex. : musicien le samedi soir, paris clandestins, petits travaux…',{area:true,optional:true,hint:'Vous pouvez cumuler plusieurs activités, officielles ou non, légales ou non. Décrivez vos revenus dans la rubrique « Moyens & possessions ».'}),
  F('savoirfaire','Ce que cette activité vous a appris','Ex. : réparer sous pression, reconnaître les habitués, négocier des pièces…',{area:true,full:true,hint:'Décrivez des savoir-faire. Les compétences et leurs scores seront choisis dans la page suivante.'}),
  F('routine','Une journée ordinaire ou un week-end','Racontez une journée habituelle ou un bon week-end : horaires, trajets, lieux, personnes…',{area:true}),
  F('appartenances','Communautés, religion et idées politiques','Ce que vous pratiquez, défendez, subissez ou rejetez…',{area:true,optional:true})]},
@@ -28,22 +32,18 @@ const sections=[
  F('desir','Désir — ce que vous voulez obtenir bientôt','Ex. : convaincre mon ancien contremaître de me rendre les lettres de mon père.',{area:true,full:true,hint:'Une action accessible à court terme, liée à une personne ou à un lieu. Vous pourrez la changer au début d’une séance.'}),
  F('peur','Ce que vous craignez de perdre','Un proche, une réputation, votre indépendance…',{area:true,optional:true}),
  F('contradiction','Votre contradiction intime','Un principe que vous défendez, et une habitude qui le met à l’épreuve…',{area:true,optional:true})]},
- {id:'moyens',title:'Votre place dans la ville',nav:'Moyens & difficultés',intro:'Décrivez les appuis sur lesquels vous pouvez compter et ce qui complique votre quotidien. Ces réponses prépareront les avantages et les handicaps.',help:'historiques',fields:[
+ {id:'moyens',title:'Votre situation et vos possessions',nav:'Moyens & possessions',intro:'Décrivez votre logement, vos revenus, vos possessions, vos appuis et vos difficultés. Reliez les objets que vous possédez à votre métier, à vos moyens et à votre histoire.',help:'historiques',fields:[
  F('niveauVie','Votre train de vie','',{type:'select',options:['À préciser…','Sans revenu stable','Revenus modestes','À l’aise au quotidien','Fortuné','Très grande fortune']}),
  F('revenus','Origine des revenus et des biens','Salaire, petite affaire, héritage, placements, activités clandestines… Précisez vos sources de revenus et leur régularité.',{area:true,rows:6}),
  F('logement','Où vivez-vous ?','Adresse fictive ou quartier, type de logement, avec qui…',{area:true}),
  F('influence','Votre réputation','Comment êtes-vous connu, et dans quel milieu ? Ex. : mécanicien fiable, musicienne prometteuse, voisin serviable ou escroc à éviter…',{area:true,optional:true}),
  F('difficultes','Dettes, ennemis ou obstacles durables','Qui veut vous nuire ? À qui devez-vous quelque chose ? Quel problème vous suit ?',{area:true,optional:true}),
  F('secret','Ce que vous préférez garder secret','Une information qui pourrait réellement compliquer votre vie…',{area:true,optional:true}),
- F('particularites','Talents particuliers, langues ou fragilités','Langues apprises, aptitude singulière, dépendance, difficulté persistante…',{area:true,optional:true})]},
- {id:'relations',title:'Les personnes autour de vous',nav:'Relations & groupe',intro:'Présentez simplement les personnes importantes : leur identité, leur âge, leur fonction, votre lien et quelques traits visibles. Les Attaches renseignées en rubrique 04 figurent déjà dans votre dossier.',help:'relations',special:'relations'},
- {id:'portrait',title:'Les détails qui restent en mémoire',nav:'Apparence & objets',intro:'Une allure, une manière de parler, un objet usé. Quelques détails choisis rendent le personnage facile à imaginer et à jouer.',help:'portrait',fields:[
- F('silhouette','Silhouette, visage et allure','Taille, carrure, traits du visage, regard, cheveux…',{area:true}),
- F('tenue','Vêtements et présentation','Ce que vos habits disent de votre métier, de vos moyens ou de vos goûts…',{area:true}),
- F('singularite','Voix, gestes et habitudes','Ex. : parle à voix basse, retourne sa bague avant de mentir…',{area:true,optional:true}),
+ F('particularites','Talents particuliers, langues ou fragilités','Langues apprises, aptitude singulière, dépendance, difficulté persistante…',{area:true,optional:true}),
  F('equipement','Objets utiles et possessions habituelles','Outils de travail, papiers, véhicule, objets du quotidien…',{area:true,optional:true,hint:'Restez cohérent avec vos moyens et vos contacts. Une longue liste d’achats est facultative.'}),
  F('objetCher','Un objet auquel vous tenez','Ce que c’est, d’où il vient et pourquoi il compte.',{area:true,optional:true}),
- F('notes','Autres éléments à discuter avec le conteur','Une idée encore incertaine, une information à fixer ensemble…',{area:true,optional:true})]}
+ F('notes','Autres éléments à discuter avec le conteur','Une idée encore incertaine, une information à fixer ensemble…',{area:true,optional:true})]},
+ {id:'relations',title:'Les personnes autour de vous',nav:'Relations & groupe',intro:'Présentez simplement les personnes importantes : leur identité, leur âge, leur fonction, votre lien et quelques traits visibles. Les Attaches renseignées avec vos Convictions figurent déjà dans votre dossier.',help:'relations',special:'relations'}
 ];
 const relationshipOptions=['Choisir…','Famille','Conjoint / personne aimée','Proche','Ami','Voisin','Collègue','Employeur / supérieur','Employé / assistant','Mentor / ancien professeur','Allié : peut apporter une aide','Contact : sait des choses','Rival / ennemi','Créancier / débiteur','Autre'];
 const convictionFields=[
@@ -92,10 +92,10 @@ const help={
  motivation:['L’Ambition et le Désir','L’Ambition est un objectif de longue haleine avec une réussite identifiable. « Réussir » est vague ; « devenir propriétaire du journal où je travaille » donne un cap. L’objectif peut être très difficile, tant qu’il est théoriquement possible.','Le Désir est une intention à court terme tournée vers le monde extérieur. « Me sentir respecté » reste abstrait ; « obtenir des excuses publiques du contremaître » vous pousse à agir.','Le Désir peut changer au début d’une séance. L’Ambition évolue si l’histoire bouleverse les priorités du personnage. Les peurs et contradictions proposées ici sont des aides facultatives.'],
  historiques:['Des éléments de vie aux Historiques','Les Historiques représentent des appuis extérieurs : argent, logement, réseau, réputation ou influence. Expliquez d’où ils viennent et ce qu’ils vous permettent réellement de faire.','Une personne qui vous donne des informations peut préparer un Contact ; une personne prête à vous aider peut préparer un Allié. Une Attache représente une valeur et n’est pas automatiquement l’un ou l’autre.','Décrire une richesse, une arme, un ami puissant ou un logement n’accorde pas de points. Le conteur et vous choisirez ensuite les avantages et les handicaps correspondant au récit et au budget de création.','Les intitulés de train de vie servent uniquement à décrire votre situation. Ils ne correspondent pas encore à des niveaux de Ressources.'],
  relations:['Un réseau de relations','Nommez les personnes importantes et leur fonction. Si elles peuvent vous aider, donnez un exemple concret : garder vos outils, vous prêter une chambre ou vous transmettre un renseignement.','Une identité, un âge approximatif, une fonction, la nature du lien et quelques traits physiques suffisent. Choisissez « Autre » pour décrire librement une relation qui ne correspond pas aux catégories.','Quand les autres personnages sont connus, prévoyez un lien positif avec l’un et une tension avec un autre. Cette tension doit rester compatible avec la coopération. À deux joueurs ou si vous commencez sans vous connaître, réglez ce point ensemble avec le conteur.','Les informations restent modifiables. Si le groupe n’est pas encore défini, cochez le report proposé : aucune rencontre préalable ne sera inventée.'],
- portrait:['Apparence, équipement et singularités','Quelques détails cohérents valent mieux qu’un inventaire interminable : mains couvertes de coupures, manteau trop grand, diction très soignée, montre offerte par une mère.','Décrivez la tenue et les objets en lien avec le métier, le revenu et les contacts du personnage. L’accès à un objet rare ou coûteux doit être discuté.','Le livre présente l’apparence, le détail de l’équipement et les singularités comme des éléments à développer librement. Vous pouvez en compléter une partie après le début du jeu.']
+ portrait:['Apparence et attitude','Quelques détails cohérents valent mieux qu’un inventaire interminable : mains couvertes de coupures, manteau trop grand, diction très soignée, montre offerte par une mère.','Esquissez une tenue et une allure qui vous plaisent. Vous pourrez les ajuster après avoir précisé le métier et les moyens du personnage. Les possessions et l’objet auquel vous tenez se décrivent avec les moyens matériels.','Le livre présente l’apparence, le détail de l’équipement et les singularités comme des éléments à développer librement. Vous pouvez en compléter une partie après le début du jeu.']
 };
 const flatFields=sections.flatMap(s=>s.fields||[]).concat(groupFields,gmFields);
-const emptyState=()=>({schemaVersion:1,fields:{},convictions:[{vivant:false}],relations:[],groupDeferred:true,validatedAt:null,illustration:emptyIllustrationPrompt()});
+const emptyState=()=>({schemaVersion:1,fields:{},convictions:[{vivant:false}],relations:[],groupDeferred:true,validatedAt:null,illustration:emptyIllustrationPrompt(),dossierPrompt:emptyDossierPrompt()});
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const nonempty=v=>typeof v==='string'&&v.trim().length>0;
 function validAgeOrBirthDate(value){
@@ -128,7 +128,7 @@ function normalize(data){
  n.fields.genre=['masculin','homme','m','male'].includes(genre)?'Masculin':['feminin','femme','f','female'].includes(genre)?'Féminin':'';
  n.convictions=data.convictions.map(row=>{if(!row||typeof row!=='object')throw new Error('Conviction invalide.');const r={vivant:row.vivant===true};convictionFields.forEach(f=>r[f.id]=textValue(row[f.id]));Object.assign(r,normalizeRelationship(row,'lien',textValue));if(!r.fonction&&row.lieu)r.fonction='Où la trouver : '+textValue(row.lieu);return r;});
  n.relations=data.relations.map(row=>{if(!row||typeof row!=='object')throw new Error('Relation invalide.');const r={};relationFields.forEach(f=>r[f.id]=textValue(row[f.id]));Object.assign(r,normalizeRelationship(row,'role',textValue));if(nonempty(row.rencontre)){r.role='Autre';r.roleAutre=[textValue(row.role),textValue(row.rencontre)].filter(nonempty).join(' — ');}return r;});
- n.illustration=normalizeIllustrationPrompt(data.illustration);n.groupDeferred=data.groupDeferred!==false;n.validatedAt=typeof data.validatedAt==='string'?data.validatedAt:null;return n;
+ n.illustration=normalizeIllustrationPrompt(data.illustration);n.dossierPrompt=normalizeDossierPrompt(data.dossierPrompt);n.groupDeferred=data.groupDeferred!==false;n.validatedAt=typeof data.validatedAt==='string'?data.validatedAt:null;return n;
 }
 let state=emptyState(),storageAvailable=true,hadInvalidStorage=false;
 try{const stored=localStorage.getItem(STORAGE_KEY);if(stored)state=normalize(JSON.parse(stored));}catch{storageAvailable=false;hadInvalidStorage=true;}
@@ -168,10 +168,10 @@ function renderSections(){
  finalActions.remove();
  document.getElementById('chapters').innerHTML=sections.map((s,i)=>`<section class="chapter" id="${s.id}" hidden aria-labelledby="title-${s.id}"><div class="chapter-art" aria-hidden="true" style="--chapter-image:url('assets/vignettes/${s.id}.webp')"></div><div class="chapter-head"><span class="chapter-num">${String(i+1).padStart(2,'0')}</span><div><h2 id="title-${s.id}" tabindex="-1">${s.title}</h2><p>${s.intro}</p></div><button type="button" class="help" data-help="${s.help}" aria-label="Comprendre : ${esc(s.title)}">i</button></div>${s.special==='convictions'?renderConvictions():s.special==='relations'?renderRelations():`<div class="fields">${s.fields.map(f=>inputField(f,state.fields[f.id])).join('')}</div>`}${s.id==='portrait'?'<p class="section-note">Ces détails restent libres. Vous pourrez les ajuster en cohérence avec les aptitudes et les moyens choisis ensuite.</p>':''}${renderStepNavigation(i)}</section>`).join('');
  document.getElementById('gm-fields').innerHTML=gmFields.map(f=>inputField(f,state.fields[f.id])).join('');
- document.getElementById('portrait').insertBefore(finalActions,document.querySelector('#portrait .step-navigation'));
- showScreen(activeScreen);updateProgress();syncIllustrationPrompt();
+ const lastChapter=document.getElementById(sections.at(-1).id);lastChapter.insertBefore(finalActions,lastChapter.querySelector('.step-navigation'));
+ showScreen(activeScreen);updateProgress();syncIllustrationPrompt();syncDossierPrompt();
 }
-document.getElementById('chapter-nav').innerHTML=`<a href="#accueil" data-screen="accueil" class="home-nav"><span aria-hidden="true">⌂</span>Accueil & repères</a><div class="chapter-links">${sections.map((s,i)=>`<a href="#${s.id}" data-chapter="${s.id}" data-screen="${s.id}"><span>${String(i+1).padStart(2,'0')}</span>${s.nav}</a>`).join('')}</div><div class="appendix-nav"><span class="appendix-label">POUR ALLER PLUS LOIN</span><a href="#donner-un-visage" data-screen="donner-un-visage"><span aria-hidden="true">◇</span><span class="appendix-name">Donner un visage<small>Facultatif</small></span></a></div>`;
+document.getElementById('chapter-nav').innerHTML=`<a href="#accueil" data-screen="accueil" class="home-nav"><span aria-hidden="true">⌂</span>Accueil & repères</a><div class="chapter-links">${sections.map((s,i)=>`<a href="#${s.id}" data-chapter="${s.id}" data-screen="${s.id}"><span>${String(i+1).padStart(2,'0')}</span>${s.nav}</a>`).join('')}</div><div class="appendix-nav"><span class="appendix-label">POUR ALLER PLUS LOIN</span><a href="#donner-un-visage" data-screen="donner-un-visage"><span aria-hidden="true">◇</span><span class="appendix-name">Donner un visage<small>Facultatif</small></span></a><a href="#dossier-illustre" data-screen="dossier-illustre"><span aria-hidden="true">↗</span><span class="appendix-name">Dossier illustré<small>Prompt et portrait</small></span></a></div>`;
 document.getElementById('rules-reference').innerHTML=references.map(([title,pages,content])=>`<div class="reference"><strong>${title}</strong><span class="pages">${pages}</span><p>${content}</p></div>`).join('');
 function assess(s){
  const f=s.fields;const missing=[];const add=(id,text)=>missing.push({id,text});
@@ -189,11 +189,11 @@ function assess(s){
  if(!nonempty(f.logement)||!nonempty(f.revenus))add('moyens','Décrire votre logement et l’origine de vos moyens, même précaires.');
  if(!s.groupDeferred&&![f.groupePourquoi,f.pjPositif,f.pjNegatif].every(nonempty))add('relations','Préciser le lien positif, la tension et la raison de coopérer, ou reporter ce choix au groupe.');
  s.relations.forEach((r,i)=>{if(!nonempty(r.nom))add('relations',`Nommer la relation ${i+1}, ou retirer cette fiche vide.`);if(r.role==='Autre'&&!nonempty(r.roleAutre))add('relations',`Préciser la nature de la relation ${i+1} dans « Autre ».`);});
- const complete=sections.map(x=>!missing.some(m=>m.id===x.id)&&(x.id!=='portrait'||[f.silhouette,f.tenue,f.singularite,f.equipement,f.objetCher,f.notes].some(nonempty))&&(x.id!=='relations'||s.relations.some(r=>nonempty(r.nom))||groupFields.some(g=>nonempty(f[g.id]))));
+ const complete=sections.map(x=>!missing.some(m=>m.id===x.id)&&(x.id!=='portrait'||[f.silhouette,f.tenue,f.singularite].some(nonempty))&&(x.id!=='relations'||s.relations.some(r=>nonempty(r.nom))||groupFields.some(g=>nonempty(f[g.id]))));
  return {missing,complete};
 }
 function updateProgress(){const {complete}=assess(state);const count=complete.filter(Boolean).length;document.getElementById('progress').value=count;document.getElementById('progress-label').textContent=`${count} / 8`;sections.forEach((s,i)=>document.querySelector(`[data-chapter="${s.id}"]`).classList.toggle('done',complete[i]));}
-const screenIds=['accueil',...sections.map(s=>s.id),'donner-un-visage'];
+const screenIds=['accueil',...sections.map(s=>s.id),'donner-un-visage','dossier-illustre'];
 const screenFromHash=()=>{const key=window.location.hash.slice(1);return screenIds.includes(key)?key:'accueil';};
 let activeScreen=screenFromHash();
 function renderStepNavigation(index){
@@ -207,12 +207,13 @@ function showScreen(key,{focus=false,scroll=false}={}){
  document.getElementById('dossier').hidden=!isChapter;
  sections.forEach(s=>{document.getElementById(s.id).hidden=s.id!==activeScreen;});
  document.getElementById('donner-un-visage').hidden=activeScreen!=='donner-un-visage';
+ document.getElementById('dossier-illustre').hidden=activeScreen!=='dossier-illustre';
  document.querySelectorAll('[data-screen]').forEach(a=>{const selected=a.dataset.screen===activeScreen;a.classList.toggle('active',selected);if(selected)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
- const title=activeScreen==='accueil'?'Accueil & repères':activeScreen==='donner-un-visage'?'Donner un visage':sections.find(s=>s.id===activeScreen).nav;
+ const title=activeScreen==='accueil'?'Accueil & repères':activeScreen==='donner-un-visage'?'Donner un visage':activeScreen==='dossier-illustre'?'Dossier illustré':sections.find(s=>s.id===activeScreen).nav;
  document.title=title+' — Archives personnelles · Octobre 1940';
  document.getElementById('screen-status').textContent=title;
  if(scroll)window.scrollTo({top:0,behavior:'instant'});
- if(focus){const heading=activeScreen==='accueil'?document.querySelector('#accueil h1'):activeScreen==='donner-un-visage'?document.getElementById('illustration-prompt-title'):document.getElementById('title-'+activeScreen);heading?.focus({preventScroll:true});}
+ if(focus){const heading=activeScreen==='accueil'?document.querySelector('#accueil h1'):activeScreen==='donner-un-visage'?document.getElementById('illustration-prompt-title'):activeScreen==='dossier-illustre'?document.getElementById('dossier-prompt-title'):document.getElementById('title-'+activeScreen);heading?.focus({preventScroll:true});}
 }
 function navigateToScreen(key){
  if(!screenIds.includes(key))return;
@@ -228,7 +229,7 @@ document.addEventListener('click',e=>{
 });
 let toastTimer;
 function toast(message){const t=document.getElementById('toast');t.textContent=message;t.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('visible'),4500);}
-function save(options={}){if(options.background!==false)state.validatedAt=null;syncIllustrationPrompt();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));storageAvailable=true;document.getElementById('save-status').textContent='Enregistré dans ce navigateur';}catch{storageAvailable=false;document.getElementById('save-status').textContent='Sauvegarde locale indisponible — exportez le dossier';}updateProgress();}
+function save(options={}){if(options.background!==false)state.validatedAt=null;syncIllustrationPrompt();syncDossierPrompt();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));storageAvailable=true;document.getElementById('save-status').textContent='Enregistré dans ce navigateur';}catch{storageAvailable=false;document.getElementById('save-status').textContent='Sauvegarde locale indisponible — exportez le dossier';}updateProgress();}
 function capture(e){const t=e.target;if(t.dataset.field){state.fields[t.dataset.field]=t.value;save();}else if(t.dataset.kind){state[t.dataset.kind][Number(t.dataset.index)][t.dataset.key]=t.type==='checkbox'?t.checked:t.value;syncRelationshipOther(t.dataset.kind,Number(t.dataset.index),t.dataset.key);save();}else if(t.id==='groupDeferred'){state.groupDeferred=t.checked;save();}}
 document.addEventListener('input',capture);document.addEventListener('change',e=>{if(e.target.type==='checkbox'||e.target.tagName==='SELECT')capture(e);});
 document.getElementById('dossier').addEventListener('submit',e=>e.preventDefault());
@@ -245,11 +246,12 @@ document.addEventListener('click',e=>{
  if(btn.dataset.jump){document.getElementById('review-dialog').close();navigateToScreen(btn.dataset.jump);document.querySelector(`#${btn.dataset.jump} input, #${btn.dataset.jump} textarea`)?.focus({preventScroll:true});}
 });
 function summaryEntries(){
- const groups=sections.map(s=>({title:s.title,entries:(s.fields||[]).map(f=>[f.label,state.fields[f.id]])}));
- groups[3].entries=state.convictions.flatMap((c,i)=>[[`Conviction ${i+1}`,c.principe],['Origine de cette Conviction',c.origine],[`Attache ${i+1}`,c.nom],['Âge de l’Attache',c.age],['Fonction ou occupation',c.fonction],['Nature de votre relation',relationshipText(c,'lien')],['Description physique de l’Attache',c.description],['Lien entre l’Attache et la Conviction',c.incarne]]);
- groups[6].entries=state.relations.flatMap((r,i)=>[[`Relation ${i+1}`,r.nom],['Âge',r.age],['Fonction ou occupation',r.fonction],['Nature de votre relation',relationshipText(r,'role')],['Description physique et attitude',r.description],['Situations et aide concrète',r.appui]]);
- groups[6].entries.push(...groupFields.map(f=>[f.label,state.fields[f.id]]));
- if(state.groupDeferred)groups[6].entries.push(['Liens avec le groupe','À préciser avec le conteur et les autres joueurs.']);
+ const groups=sections.map(s=>({id:s.id,title:s.title,entries:(s.fields||[]).map(f=>[f.label,state.fields[f.id]])}));
+ const convictions=groups.find(g=>g.id==='valeurs'),relations=groups.find(g=>g.id==='relations');
+ convictions.entries=state.convictions.flatMap((c,i)=>[[`Conviction ${i+1}`,c.principe],['Origine de cette Conviction',c.origine],[`Attache ${i+1}`,c.nom],['Âge de l’Attache',c.age],['Fonction ou occupation',c.fonction],['Nature de votre relation',relationshipText(c,'lien')],['Description physique de l’Attache',c.description],['Lien entre l’Attache et la Conviction',c.incarne]]);
+ relations.entries=state.relations.flatMap((r,i)=>[[`Relation ${i+1}`,r.nom],['Âge',r.age],['Fonction ou occupation',r.fonction],['Nature de votre relation',relationshipText(r,'role')],['Description physique et attitude',r.description],['Situations et aide concrète',r.appui]]);
+ relations.entries.push(...groupFields.map(f=>[f.label,state.fields[f.id]]));
+ if(state.groupDeferred)relations.entries.push(['Liens avec le groupe','À préciser avec le conteur et les autres joueurs.']);
  return groups;
 }
 function openReview(){
@@ -268,17 +270,16 @@ const filename=()=>String(state.fields.nom||'personnage').normalize('NFD').repla
 document.getElementById('export-json').onclick=()=>{download(JSON.stringify(state,null,2),`dossier-${filename()}.json`,'application/json');toast('Sauvegarde téléchargée. Elle inclut les notes du conteur si elles sont remplies.');};
 document.getElementById('export-json-end').onclick=()=>document.getElementById('export-json').click();
 document.getElementById('reset-dossier').onclick=()=>{
- if(!window.confirm('Effacer ce dossier et sa sauvegarde dans ce navigateur ? Toutes les réponses, les notes et le prompt d’illustration seront effacés. Cette action est irréversible.'))return;
+ if(!window.confirm('Effacer ce dossier et sa sauvegarde dans ce navigateur ? Toutes les réponses, les notes, les prompts et le portrait importé seront effacés. Cette action est irréversible.'))return;
  try{localStorage.removeItem(STORAGE_KEY);}catch{toast('Impossible d’effacer la sauvegarde dans ce navigateur. Le dossier a été conservé.');return;}
  state=emptyState();storageAvailable=true;hadInvalidStorage=false;
+ resetDossierPromptUI();
  document.getElementById('import-file').value='';
  document.getElementById('summary').innerHTML='';
  document.getElementById('validation').innerHTML='';
  document.getElementById('validation').classList.remove('valid');
  document.getElementById('review-name').textContent='Votre personnage';
  document.getElementById('confirm-background').disabled=true;
- document.getElementById('pdf-feedback').textContent='';
- document.getElementById('pdf-feedback').hidden=true;
  renderSections();navigateToScreen('identite');
  document.getElementById('save-status').textContent='Dossier vierge';
  toast('Dossier effacé. Vous pouvez commencer un nouveau personnage.');
@@ -286,7 +287,7 @@ document.getElementById('reset-dossier').onclick=()=>{
 function narrativeText(){const f=state.fields;let out=`DOSSIER PERSONNEL — OCTOBRE 1940\n${f.nom||'Personnage sans nom'}\n\n`;if(nonempty(f.concept))out+=`${f.concept.trim()}\n\n`;for(const g of summaryEntries()){const entries=g.entries.filter(([,v])=>nonempty(v));if(!entries.length)continue;out+=`${g.title.toUpperCase()}\n\n`;out+=entries.map(([label,value])=>`${label}\n${value.trim()}\n`).join('\n')+'\n';}return out;}
 document.getElementById('export-text').onclick=()=>download(narrativeText(),`histoire-${filename()}.txt`,'text/plain;charset=utf-8');
 document.getElementById('import-json').onclick=()=>document.getElementById('import-file').click();
-document.getElementById('import-file').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>2*1024*1024){toast('Fichier trop volumineux : limite de 2 Mo.');return;}try{const next=normalize(JSON.parse(await file.text()));const hasWork=Object.values(state.fields).some(nonempty)||state.convictions.some(c=>Object.values(c).some(v=>typeof v==='string'&&nonempty(v)));if(hasWork&&!window.confirm('Reprendre cette sauvegarde remplacera le dossier actuellement affiché. Continuer ?'))return;state=next;save();renderSections();toast('Dossier repris.');}catch{toast('Import impossible : choisissez une sauvegarde JSON créée par cette page.');}};
+document.getElementById('import-file').onchange=async e=>{const file=e.target.files[0];e.target.value='';if(!file)return;if(file.size>12*1024*1024){toast('Fichier trop volumineux : limite de 12 Mo.');return;}try{const next=normalize(JSON.parse(await file.text()));const hasWork=Object.values(state.fields).some(nonempty)||state.convictions.some(c=>Object.values(c).some(v=>typeof v==='string'&&nonempty(v)));if(hasWork&&!window.confirm('Reprendre cette sauvegarde remplacera le dossier actuellement affiché. Continuer ?'))return;state=next;resetDossierPromptUI();save();renderSections();toast('Dossier repris.');}catch{toast('Import impossible : choisissez une sauvegarde JSON créée par cette page.');}};
 renderSections();
 document.getElementById('save-status').textContent=storageAvailable?(Object.values(state.fields).some(nonempty)?(state.validatedAt?'Background validé · enregistré ici':'Dossier repris dans ce navigateur'):'Dossier vierge'):'Sauvegarde locale indisponible — exportez le dossier';
 if(hadInvalidStorage)toast('La sauvegarde précédente est inaccessible. Vous pouvez importer un fichier JSON.');
