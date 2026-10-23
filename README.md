@@ -11,34 +11,43 @@ Création de background humain : accueil documenté, huit rubriques, portrait fa
 
 Le site est statique : aucune compilation, clé API ou configuration de serveur n’est nécessaire. Les chemins relatifs fonctionnent aussi dans un dépôt portant un autre nom. Cette archive ne modifie pas l’ancien site ChatGPT Sites.
 
-## Le dossier : deux résultats distincts
+## Deux boutons, deux prompts, deux formats
 
-- **Une planche illustrée synthétique**, partageable entre joueurs : personnage principal dominant, illustrations secondaires justifiées par les réponses, textes courts, esthétique peinte de roman noir et Art déco.
-- **Un texte détaillé réservé au MJ**, avec l’ensemble des faits renseignés, les nuances, les secrets et les difficultés. Ce texte est séparé de l’image et se télécharge à part.
+La page **Dossier illustré** présente deux boutons indépendants. Un clic copie le prompt correspondant, avec les réponses des huit rubriques, Convictions, Attaches et relations. Collez ensuite ce texte dans une IA comme ChatGPT capable de générer le format demandé.
 
-Le site prépare un **prompt** à partir des huit rubriques. La synthèse rédactionnelle et la génération graphique se font dans ChatGPT, conformément au fonctionnement choisi ; le site ne fait pas d’appel à une API et ne vérifie pas automatiquement les textes dessinés dans une image.
+| Bouton | Résultat demandé à l’IA |
+| --- | --- |
+| **Planche synthétique illustrée** | **Une seule image verticale**, avec une synthèse sans doublons, le personnage dominant et des illustrations de lieux, proches, scènes et objets justifiées par les réponses. |
+| **Background détaillé pour le MJ** | **Un PDF de dossier de presse illustré**, avec une synthèse d’une page puis le background développé, tous les faits importants, les relations et les informations confidentielles. |
 
-### Obtenir les deux résultats
+Le site copie des consignes ; l’image et le PDF sont créés dans la conversation extérieure. Il ne demande aucune clé API. Le prompt de l’image ne demande plus de texte détaillé séparé. Le prompt du PDF exige la création effective d’un fichier téléchargeable.
 
-1. Remplissez les rubriques et ouvrez **Générer le dossier illustré**.
-2. Téléchargez la référence de Kiki depuis cette page. Elle guide le style et la composition ; ses faits et son visage ne doivent pas être copiés sur un autre personnage.
-3. Si vous le souhaitez, utilisez **Donner un visage**, créez votre portrait dans ChatGPT, puis importez-le dans le dossier.
-4. Copiez le prompt du dossier dans ChatGPT. **Joignez aussi la référence de Kiki et le portrait éventuel** : le texte copié ne transmet pas les images.
-5. Le prompt demande d’abord une synthèse structurée sans doublons, puis le texte complet destiné au MJ et une seule image verticale. Il distingue les faits partageables des faits confidentiels et exclut les indices visuels révélant un secret.
-6. Importez la planche obtenue dans le site (JPG, PNG ou WebP, 30 Mo maximum). Elle est affichable en grand et téléchargeable dans son format original, sans compression.
-7. Collez le texte rédigé dans **Le dossier pour le MJ**. À défaut, cette zone rassemble déjà les réponses complètes. Elle est modifiable et téléchargeable en `.txt`.
+### Utilisation
 
-Relisez la planche avant de la partager : aucune consigne de génération ne garantit à elle seule la confidentialité ou l’exactitude du résultat. Le prompt complet, le texte pour le MJ et la sauvegarde JSON contiennent les informations privées ; ne les transmettez pas aux autres joueurs. La zone MJ repliée sert à la présentation et n’est pas une protection d’accès.
+1. Remplissez le questionnaire puis ouvrez **Dossier illustré**.
+2. Cliquez sur le bouton du résultat souhaité : son prompt est copié. Si la copie automatique échoue, le texte est sélectionné pour une copie manuelle avec Ctrl+C ou Cmd+C.
+3. Collez le prompt dans ChatGPT. Joignez votre portrait éventuel. Pour la planche, téléchargez et joignez aussi la référence de Kiki disponible sur la page. Copier du texte ne transmet pas une image.
+4. L’IA synthétise les réponses puis génère l’image, ou rédige et met en page le PDF selon le bouton choisi.
 
-## Sauvegardes et images
+La référence de Kiki guide la composition et la direction artistique ; ses faits et son visage ne doivent pas être copiés sur un autre personnage.
 
-Les réponses, les deux prompts, le texte personnalisé pour le MJ et le portrait préparé sont conservés dans le navigateur et exportables dans le JSON. Une modification ultérieure des réponses signale les textes personnalisés à revoir ; elle ne les écrase pas.
+### Confidentialité
 
-La planche originale est conservée séparément dans le navigateur avec IndexedDB. **Le JSON ne contient pas ses pixels.** Téléchargez l’image séparément pour l’archiver ou changer d’appareil. Après import d’un JSON sur un autre navigateur, réimportez cette image. Si le stockage d’images est indisponible, elle reste visible pendant la session et un message invite à la télécharger immédiatement.
+L’option **Inclure les informations confidentielles dans la planche** est décochée par défaut. Le prompt demande alors une présentation partageable entre joueurs et écarte les secrets et leurs indices visuels. Cochée, elle autorise une planche privée plus complète pour le joueur et le MJ.
 
-**Effacer ce dossier** efface les réponses, les prompts, le texte pour le MJ, le portrait et la planche associée dans ce navigateur, après confirmation. Les fichiers téléchargés restent sur votre appareil.
+Le PDF détaillé pour le MJ conserve tous les faits confidentiels renseignés, indépendamment de cette option. Les notes de l’espace conteur restent exclues des deux prompts destinés à la création humaine, et conservées dans le JSON.
 
-Pour reprendre un personnage de l’ancien site : exportez son JSON sur l’ancienne adresse, puis utilisez **Reprendre une sauvegarde** sur la nouvelle. L’enregistrement automatique ne se transfère pas entre adresses. Les anciennes réponses restent compatibles. Un ancien prompt de dossier PDF personnalisé est proposé au téléchargement et remplacé par le nouveau prompt de planche ; le portrait reste conservé.
+Relisez les résultats avant de les partager. Les prompts complets et le JSON contiennent les réponses privées, même lorsque la planche est réglée pour le partage.
+
+### Personnalisation et sauvegardes
+
+Chaque prompt peut être consulté, modifié, téléchargé et actualisé séparément dans son volet. Les modifications manuelles sont conservées et signalées comme à revoir lorsque les réponses ou le portrait changent. Le réglage de confidentialité n’affecte que le prompt de la planche.
+
+Les réponses, les deux prompts de dossier, le prompt du portrait, le réglage de confidentialité et le portrait préparé sont inclus dans la sauvegarde JSON. **Effacer ce dossier** les efface après confirmation. Les anciens JSON restent compatibles ; un ancien prompt personnalisé combinant image et texte est proposé au téléchargement et remplacé par les deux nouveaux prompts.
+
+Pour reprendre un personnage de l’ancien site, exportez son JSON puis importez-le avec **Reprendre une sauvegarde**. La sauvegarde automatique du navigateur ne se transfère pas entre adresses.
+
+Les résultats importés dans la version précédente restent récupérables dans un volet réservé aux anciennes sauvegardes. Une ancienne planche reste stockée dans le navigateur avec IndexedDB ; ses pixels ne sont pas inclus dans le JSON. Son téléchargement séparé permet de la conserver ou changer d’appareil. Un ancien texte personnalisé pour le MJ reste également conservé.
 
 ## Parcours
 
@@ -63,8 +72,8 @@ Les ressentis réciproques et la rubrique avec les autres personnages joueurs re
 | `app.js` | Questionnaire, sauvegardes, import, relecture |
 | `context-guides.js` | Contextes historiques |
 | `illustration-prompt.js` | Prompt du portrait et mise en scène |
-| `dossier-prompt.js` | Prompt de la planche et du texte MJ, portrait, migrations |
-| `dossier-result.js` | Consultation et conservation de la planche, texte pour le MJ |
+| `dossier-prompt.js` | Prompts indépendants de l’image et du PDF, portrait, migrations |
+| `dossier-result.js` | Récupération des résultats importés dans la version précédente |
 | `dossier-prompt.css` | Présentation de la page du dossier |
 | `style.css`, `wallpaper.css`, `journey.css` | Présentation générale conservée |
 | `assets/` | Images du site et référence de Kiki fournie |
