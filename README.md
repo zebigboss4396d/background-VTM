@@ -26,10 +26,10 @@ Le site copie des consignes ; l’image et le PDF sont créés dans la conversat
 
 1. Remplissez le questionnaire puis ouvrez **Dossier illustré**.
 2. Cliquez sur le bouton du résultat souhaité : son prompt est copié. Si la copie automatique échoue, le texte est sélectionné pour une copie manuelle avec Ctrl+C ou Cmd+C.
-3. Collez le prompt dans ChatGPT. Joignez votre portrait éventuel. Pour la planche, téléchargez et joignez aussi la référence de Kiki disponible sur la page. Copier du texte ne transmet pas une image.
+3. Collez le prompt dans ChatGPT. Joignez votre portrait éventuel. Le prompt de la planche décrit intégralement sa composition et son style : aucune référence graphique n’est nécessaire. Le portrait personnel reste facultatif.
 4. L’IA synthétise les réponses puis génère l’image, ou rédige et met en page le PDF selon le bouton choisi.
 
-La référence de Kiki guide la composition et la direction artistique ; ses faits et son visage ne doivent pas être copiés sur un autre personnage.
+Le prompt décrit une composition verticale autonome : grand portrait dominant, bandeau de titre ancien, papier ivoire, peintures secondaires de lieux, proches et objets issus des réponses, typographie de presse et ornements Art déco discrets. Aucun personnage d’exemple ni fichier de référence n’est nécessaire.
 
 ### Confidentialité
 
@@ -43,7 +43,7 @@ Relisez les résultats avant de les partager. Les prompts complets et le JSON co
 
 Chaque prompt peut être consulté, modifié, téléchargé et actualisé séparément dans son volet. Les modifications manuelles sont conservées et signalées comme à revoir lorsque les réponses ou le portrait changent. Le réglage de confidentialité n’affecte que le prompt de la planche.
 
-Les réponses, les deux prompts de dossier, le prompt du portrait, le réglage de confidentialité et le portrait préparé sont inclus dans la sauvegarde JSON. **Effacer ce dossier** les efface après confirmation. Les anciens JSON restent compatibles ; un ancien prompt personnalisé combinant image et texte est proposé au téléchargement et remplacé par les deux nouveaux prompts.
+Les réponses, les deux prompts de dossier, le prompt du portrait, le réglage de confidentialité et le portrait préparé sont inclus dans la sauvegarde JSON. **Effacer ce dossier** les efface après confirmation. Les anciens JSON restent compatibles ; un ancien prompt personnalisé demandant une référence graphique ou combinant image et texte est proposé au téléchargement et remplacé par les deux nouveaux prompts.
 
 Pour reprendre un personnage de l’ancien site, exportez son JSON puis importez-le avec **Reprendre une sauvegarde**. La sauvegarde automatique du navigateur ne se transfère pas entre adresses.
 
@@ -76,8 +76,8 @@ Les ressentis réciproques et la rubrique avec les autres personnages joueurs re
 | `dossier-result.js` | Récupération des résultats importés dans la version précédente |
 | `dossier-prompt.css` | Présentation de la page du dossier |
 | `style.css`, `wallpaper.css`, `journey.css` | Présentation générale conservée |
-| `assets/` | Images du site et référence de Kiki fournie |
+| `assets/` | Images du site |
 | `.nojekyll`, `_config.yml` | Publication statique |
 | `AGENTS.md` | Préférence de formulaire conservée |
 
-Le livre de règles, la fiche officielle et les réponses personnelles des joueurs ne sont pas inclus. La référence fictive de Kiki est fournie dans les assets pour pouvoir la joindre à la génération. Les mentions des contenus tiers sont conservées ; aucune licence générale supplémentaire ne leur est attribuée.
+Le livre de règles, la fiche officielle et les réponses personnelles des joueurs ne sont pas inclus. Les mentions des contenus tiers sont conservées ; aucune licence générale supplémentaire ne leur est attribuée.
