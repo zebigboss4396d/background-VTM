@@ -89,6 +89,8 @@ Le site prépare les consignes et les réponses ; la rédaction, les illustratio
 5. Convictions et Attaches.
 6. Ambition et Désir.
 7. Moyens et possessions : logement, revenus, réputation, difficultés, objets et notes personnelles.
-8. Relations et groupe, puis préparation du dossier illustré.
+8. Relations, puis préparation du dossier illustré.
 
 Les identifiants des réponses sont conservés : les anciennes sauvegardes retrouvent automatiquement les champs dans leur nouvelle rubrique. La tenue esquissée au début peut être ajustée après le choix du métier et des moyens.
+
+La rubrique « Avec les autres personnages joueurs » a été retirée du formulaire, des aides, de la validation et des exports. Les anciens champs correspondants sont ignorés à l’import. Dans « Vos autres relations », une première fiche vide est toujours affichée, puis le bouton « Ajouter une personne » permet d’en ouvrir d’autres. Les fiches entièrement vides sont facultatives et ne sont pas transmises au prompt.
